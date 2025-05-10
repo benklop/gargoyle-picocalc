@@ -41,8 +41,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release \
          -DWITH_FREEDESKTOP=OFF \
          -DWITH_KDE=OFF \
          -DWITH_TTS=DYNAMIC \
-         -DSOUND=QT \
-         -DCMAKE_C_COMPILER=arm-none-linux-gnueabihf-gcc
+         -DSOUND=QT
 make "-j$(nproc)"
 make install DESTDIR=AppDir
 
