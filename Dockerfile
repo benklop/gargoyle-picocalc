@@ -16,11 +16,11 @@ RUN apt-get update && apt-get install -y \
     qt6-multimedia-dev \
     libqt6svg6-dev \
     libqt6svg6 \
-    libqt6network6 \
+    libqt6network6t64 \
     libqt6core5compat6 \
-    libqt6gui6 \
-    libqt6widgets6 \
-    libqt6opengl6 \
+    libqt6gui6t64 \
+    libqt6widgets6t64 \
+    libqt6opengl6t64 \
     libqt6opengl6-dev \
     libqt6multimedia6 \
     libqt6multimediawidgets6 \
@@ -44,7 +44,7 @@ RUN cd garglk && git submodule update --init --recursive
 WORKDIR /garglk
 
 # Copy the build script
-COPY gargoyle-appimage.sh /garglk/build.sh
+COPY gargoyle-builder.sh /garglk/build.sh
 
 # Make the build script executable
 RUN chmod +x /garglk/build.sh

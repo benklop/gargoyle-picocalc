@@ -6,8 +6,8 @@ set -ex
 # https://github.com/linuxdeploy/linuxdeploy-plugin-appimage/releases/download/continuous/linuxdeploy-plugin-appimage-x86_64.AppImage
 # https://github.com/linuxdeploy/linuxdeploy-plugin-qt/releases/download/continuous/linuxdeploy-plugin-qt-x86_64.AppImage
 
-mkdir build-appimage
-cd build-appimage
+mkdir -p build
+cd build
 
 arch=$(uname -m)
 case "$arch" in
@@ -16,6 +16,9 @@ case "$arch" in
         ;;
     aarch64)
         arch_suffix="aarch64"
+        ;;
+    armv7l)
+        arch_suffix="armhf"
         ;;
     *)
         echo "Unsupported architecture: $arch"
@@ -38,7 +41,8 @@ cmake .. -DCMAKE_BUILD_TYPE=Release \
          -DWITH_FREEDESKTOP=OFF \
          -DWITH_KDE=OFF \
          -DWITH_TTS=DYNAMIC \
-         -DSOUND=QT
+         -DSOUND=QT \
+         -DCMAKE_C_COMPILER=arm-none-linux-gnueabihf-gcc
 make "-j$(nproc)"
 make install DESTDIR=AppDir
 
